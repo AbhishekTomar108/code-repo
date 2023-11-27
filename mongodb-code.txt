@@ -3,6 +3,7 @@
 
 const latestReviews = await review.find().sort({ date: -1 }).limit(10);
 
-/ ---------- delete the document from collection which does not contain specific field -------------/
+/ ---------- delete and find the document from collection which does not contain specific field -------------/
 
-db.studentfees.find({Batch:{$exists:true}});
+db.studentfees.find({Batch:{$exists:true}});  -------------> to find document
+db.studentfees.deleteMany({Batch:{$exists:false}});  -------------> to find document
