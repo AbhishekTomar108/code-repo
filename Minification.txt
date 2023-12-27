@@ -1,0 +1,10 @@
+----------to minify all the html files-----------------
+
+
+Get-ChildItem .\*.html | ForEach-Object {
+    Get-Content $_.FullName | html-minifier --output "..\output\$($_.BaseName).min.html" --collapse-whitespace --remove-comments --minify-js --minify-css
+}
+
+where 
+.\ --->current directory/input directory
+..\output -----> output directory
