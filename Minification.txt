@@ -1,5 +1,17 @@
-----------to minify all the html files-----------------
+----------to minify html files-----------------
 
+
+// Install html-minifier
+
+npm install -g html-minifier
+
+
+// minify single file 
+
+html-minifier input.html -o output.min.html
+
+
+// command to minify all the html files
 
 Get-ChildItem .\*.html | ForEach-Object {
     Get-Content $_.FullName | html-minifier --output "..\output\$($_.BaseName).min.html" --collapse-whitespace --remove-comments --minify-js --minify-css
