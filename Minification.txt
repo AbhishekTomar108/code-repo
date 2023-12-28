@@ -14,9 +14,59 @@ html-minifier input.html -o output.min.html
 // command to minify all the html files
 
 Get-ChildItem .\*.html | ForEach-Object {
-    Get-Content $_.FullName | html-minifier --output "..\output\$($_.BaseName).min.html" --collapse-whitespace --remove-comments --minify-js --minify-css
+    Get-Content $_.FullName | html-minifier --output "..\output\$($_.BaseName).min.html" --collapse-whitespace --remove-comments
 }
 
 where 
 .\ --->current directory/input directory
 ..\output -----> output directory
+
+
+
+//----------------- minification of js files -------------//
+
+
+// install uglify-js
+
+-> npm install -g uglify-js 
+
+// compress single js file 
+
+-> uglifyjs script1.js -o script1.min.js --mangle --compress
+
+// decompress single js file
+
+-> uglifyjs input.min.js --beautify -o output.js
+
+// compress all js files 
+
+-> Get-ChildItem -Recurse -Include *.js | ForEach-Object {
+    $outputPath = "$($_.Directory.FullName)\$($_.BaseName).min.js"
+    uglifyjs $_.FullName -o $outputPath --mangle --compress
+}
+
+
+// --------------- minification of all images ------------ //
+
+
+// For png files
+
+-> download pngquant
+
+// 
+
+Get-ChildItem -Recurse -Include *.png | ForEach-Object {
+  & "C:\Users\Dell\Downloads\pngquant-windows\pngquant\pngquant.exe" $_.FullName --force --ext .png --quality=60-80
+ }
+
+C:\Users\Dell\Downloads\pngquant-windows\pngquant\pngquant.exe ---> path of pngquant.exe
+
+
+
+// for jpg/jpeg
+
+-> Downlaod ImageMagick and set path in environment variable
+
+-> Get-ChildItem -Recurse -Include *.jpg,*.jpeg,*.png,*.svg,*.webp | ForEach-Object {
+     magick convert $_.FullName -quality 20 $_.FullName
+ }
