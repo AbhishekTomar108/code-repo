@@ -1,0 +1,25 @@
+/------------ for removal of .html extension ----------------/
+
+
+RewriteEngine On
+
+# Redirect /about-us.html to /about-us
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# Rewrite /about-us to /about-us.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
+
+
+/----------- redirection command in AWS inside /etc/httpd/conf/httpd.conf ---------/
+
+<VirtualHost *:80>
+    ServerName uncodemy.online
+
+RedirectMatch ^/course/data-science\.html http://uncodemy.online/Course/data-science-training-course-in-noida.html 
+ 
+</VirtualHost>
+
+--> also make allowOveride to all for /var/www/html
+
