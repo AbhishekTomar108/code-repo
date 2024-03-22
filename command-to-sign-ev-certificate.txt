@@ -1,0 +1,13 @@
+[11:29 AM] Ritik Kwatra
+
+// command to run on cmd to sign certificate to file
+
+signtool sign /n "GVCLOUD SECURE PRIVATE LIMITED" /fd SHA256 /tr http://timestamp.globalsign.com/tsa/advanced /td SHA256 C:\Users\Dell\Desktop\advanceDriver\advance-driver-update.exe
+
+Timestamping SaaS - Apply RFC 3161 Timestamps | GlobalSign
+Our Timestamping Software as a Service (SaaS) provides a low cost, easy method to apply RFC 3161 trusted timestamps to time-sensitive transactions. Learn more.
+
+
+// path to signtool exe file
+
+C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64>
